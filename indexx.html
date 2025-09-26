@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,11 +33,11 @@
     }
     .card:hover { transform: translateY(-5px); }
 
-    .card img {
+    .card model-viewer {
       width: 100%;
       height: 140px; /* chhota preview */
       border-radius: 10px;
-      object-fit: cover;
+      background: #fff;
     }
 
     .card h3 { 
@@ -73,12 +74,12 @@
 
 <script>
 const menu = [
-  { id: 'item1', name: 'Burger Classic', price: 150, img: 'dosa.jpg' },
-  { id: 'item2', name: 'Cheese Burger', price: 180, img: 'dosa.jpg' },
-  { id: 'item3', name: 'Veggie Burger', price: 120, img: 'dosa.jpg' },
-  { id: 'item4', name: 'Chicken Burger', price: 200, img: 'dosa.jpg' },
-  { id: 'item5', name: 'Double Patty', price: 250, img: 'dosa.jpg' },
-  { id: 'item6', name: 'Paneer Burger', price: 170, img: 'dosa.jpg' }
+  { id: 'item1', name: 'Burger Classic', price: 150, glb: 'dosa.glb' },
+  { id: 'item2', name: 'Cheese Burger', price: 180, glb: 'dosa.glb' },
+  { id: 'item3', name: 'Veggie Burger', price: 120, glb: 'dosa.glb' },
+  { id: 'item4', name: 'Chicken Burger', price: 200, glb: 'dosa.glb' },
+  { id: 'item5', name: 'Double Patty', price: 250, glb: 'dosa.glb' },
+  { id: 'item6', name: 'Paneer Burger', price: 170, glb: 'dosa.glb' }
 ];
 
 const grid = document.getElementById("menuGrid");
@@ -86,7 +87,7 @@ const grid = document.getElementById("menuGrid");
 menu.forEach(item => {
   grid.innerHTML += `
     <div class="card">
-      <img src="${item.img}" alt="${item.name}">
+      <model-viewer src="${item.glb}" camera-controls auto-rotate ar shadow-intensity="1"></model-viewer>
       <h3>${item.name}</h3>
       <p class="price">₹${item.price}</p>
       <a href="detail.html?id=${item.id}" class="btn">View Details</a>
