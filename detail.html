@@ -22,32 +22,25 @@
       font-weight:bold; 
       margin-bottom:15px; 
     }
-
-    /* Container with background image */
     .model-container {
       width:100%;
       height:60vh;
       background: url('product_backgroungd.jpg') no-repeat center center / cover;
-      border-radius:0;
       display:flex;
       align-items:center;
       justify-content:center;
     }
-
     model-viewer {
       width:100%;
       height:80%;
-      background: transparent; /* important */
+      background: transparent;
     }
-
     img {
       width:100%;
-      height:80vh;
+      height:60vh;
       object-fit: contain;
-      border-radius:0;
       background:#fff;
     }
-
     .back { 
       display:inline-block; 
       margin:20px auto 0; 
@@ -58,40 +51,109 @@
       border-radius:6px; 
       font-size:16px; 
     }
-    .back:hover {
-      background:#094f2a;
-    }
+    .back:hover { background:#094f2a; }
   </style>
 </head>
 <body>
 
 <div id="content"></div>
-
 <a href="index.html" class="back">← Back to Menu</a>
 
 <script>
-const menu = [
-  { id: 's1', name: 'Masala Dosa', price: 120, long: 'Crispy dosa with masala filling.', img: 'dosa.jpg', glb: 'dosa.glb' },
-  { id: 's2', name: 'Idli Sambhar', price: 80, long: 'Steamed idlis with hot sambhar.', img: 'idli.jpg', glb: 'idli.glb' },
-  { id: 's3', name: 'Vada Sambhar', price: 90, long: 'Crispy vada served with sambhar.', img: 'vada.jpg', glb: 'vada.glb' },
-  { id: 's4', name: 'Uttapam', price: 100, long: 'Soft uttapam with toppings.', img: 'uttapam.jpg', glb: 'uttapam.glb' },
-  { id: 'c1', name: 'Veg Manchurian', price: 150, long: 'Fried veg balls in tangy sauce.', img: 'manchurian.jpg', glb: 'manchurian.glb' },
-  { id: 'c2', name: 'Hakka Noodles', price: 120, long: 'Stir-fried noodles with veggies.', img: 'noodles.jpg', glb: 'noodles.glb' },
-  { id: 'c3', name: 'Spring Roll', price: 130, long: 'Crispy rolls filled with veggies.', img: 'springroll.jpg', glb: 'springroll.glb' },
-  { id: 'c4', name: 'Chilli Paneer', price: 180, long: 'Paneer cubes tossed in chilli sauce.', img: 'chillipaneer.jpg', glb: 'chillipaneer.glb' }
-];
+const menuData = {
+  south: {
+    dosa: [
+      { id: 's1', name: 'Masala Dosa', price: 80, img: 'images/masala-dosa.jpg', glb: '3d/masala-dosa.glb' },
+      { id: 's2', name: 'Plain Dosa', price: 60, img: 'images/plain-dosa.jpg', glb: '3d/plain-dosa.glb' },
+      { id: 's3', name: 'Special Masala Dosa', price: 110, img: 'images/special-masala-dosa.jpg', glb: '3d/special-masala-dosa.glb' },
+      { id: 's4', name: 'Onion Plain Dosa', price: 80, img: 'images/onion-plain-dosa.jpg', glb: '3d/onion-plain-dosa.glb' },
+      { id: 's5', name: 'Onion Masala Dosa', price: 90, img: 'images/onion-masala-dosa.jpg', glb: '3d/onion-masala-dosa.glb' },
+      { id: 's6', name: 'Paneer Dosa', price: 130, img: 'images/paneer-dosa.jpg', glb: '3d/paneer-dosa.glb' },
+      { id: 's7', name: 'Mysore Plain Dosa', price: 90, img: 'images/mysore-plain-dosa.jpg', glb: '3d/mysore-plain-dosa.glb' },
+      { id: 's8', name: 'Mysore Masala Dosa', price: 100, img: 'images/mysore-masala-dosa.jpg', glb: '3d/mysore-masala-dosa.glb' },
+      { id: 's9', name: 'Mysore Paneer Dosa', price: 140, img: 'images/mysore-paneer-dosa.jpg', glb: '3d/mysore-paneer-dosa.glb' }
+    ],
+    uttapam: [
+      { id: 'u1', name: 'Onion Uttapam', price: 90, img: 'images/onion-uttapam.jpg', glb: '3d/onion-uttapam.glb' },
+      { id: 'u2', name: 'Mix Veg Uttapam', price: 110, img: 'images/mix-veg-uttapam.jpg', glb: '3d/mix-veg-uttapam.glb' },
+      { id: 'u3', name: 'Paneer Uttapam', price: 130, img: 'images/paneer-uttapam.jpg', glb: '3d/paneer-uttapam.glb' },
+      { id: 'u4', name: 'Rawa Masala Dosa', price: 100, img: 'images/rawa-masala-dosa.jpg', glb: '3d/rawa-masala-dosa.glb' },
+      { id: 'u5', name: 'Rawa Onion Masala Dosa', price: 110, img: 'images/rawa-onion-masala-dosa.jpg', glb: '3d/rawa-onion-masala-dosa.glb' },
+      { id: 'u6', name: 'Rawa Paneer Masala Dosa', price: 140, img: 'images/rawa-paneer-masala-dosa.jpg', glb: '3d/rawa-paneer-masala-dosa.glb' }
+    ],
+    combo: [
+      { id: 'v1', name: 'Vada Sambhar', price: 50, img: 'images/vada-sambhar.jpg', glb: '3d/vada-sambhar.glb' },
+      { id: 'v2', name: 'Idli Sambhar', price: 50, img: 'images/idli-sambhar.jpg', glb: '3d/idli.glb' },
+      { id: 'v3', name: 'Vada/Idli plain', price: 40, img: 'images/vada-idli-plain.jpg', glb: '3d/vada-idli-plain.glb' },
+      { id: 'v4', name: 'Fried Idli', price: 60, img: 'images/fried-idli.jpg', glb: '3d/fried-idli.glb' },
+      { id: 'v5', name: 'Upma', price: 70, img: 'images/upma.jpg', glb: '3d/upma.glb' }
+    ]
+  },
+  chinese: {
+    noodles: [
+      {id: 'c1', name: 'Chowmein',  price: { half: 50, full: 80 }, img: 'images/noodles.jpg', glb: '3d/noodles.glb' },
+      {id: 'c2', name: 'Extra Veg Chowmein', price: { half: 60, full: 90 }, img: 'images/noodles.jpg', glb: '3d/extra-veg-chowmein.glb' },
+      {id: 'c3', name: 'Paneer Chowmein', price: { half: 80, full: 120 }, img: 'images/noodles.jpg', glb: '3d/paneer-chowmein.glb' },
+      {id: 'c4', name: 'Singapuri Chowmein', price: { half: 80, full: 120 }, img: 'images/noodles.jpg', glb: '3d/singapuri-chowmein.glb' },
+      {id: 'c5', name: 'Hakka Noodles', price: { half: 80, full: 120 }, img: 'images/noodles.jpg', glb: '3d/hakka-noodles.glb' },
+      {id: 'c6', name: 'Garlic Chowmein', price: { half: 60, full: 90 }, img: 'images/noodles.jpg', glb: '3d/garlic-chowmein.glb' },
+      {id: 'c7', name: 'Fried Rice', price: { half: 50, full: 80 }, img: 'images/noodles.jpg', glb: '3d/fried-rice.glb' },
+      {id: 'c8', name: 'Paneer Fried Rice', price: { half: 80, full: 120 }, img: 'images/noodles.jpg', glb: '3d/paneer-fried-rice.glb' }
+    ],
+    starters: [
+      {id: 'c9', name: 'Spring Roll', price: { half: 40, full: 60 }, img: 'images/springroll.jpg', glb: '3d/spring-roll.glb' },
+      {id: 'c10', name: 'French Fries', price: { half: 50, full: 80 }, img: 'images/fries.jpg', glb: '3d/french-fries.glb' },
+      {id: 'c11', name: 'Chilly Potato', price: { half: 60, full: 90 }, img: 'images/chilly-potato.jpg', glb: '3d/chilly-potato.glb' },
+      {id: 'c12', name: 'Honey Chilly Potato', price: { half: 70, full: 100 }, img: 'images/honey-chilly.jpg', glb: '3d/honey-chilly-potato.glb' }
+    ],
+    gravy: [
+      {id: 'c13', name: 'Chilly Paneer (Gravy)', price: { half: 100, full: 160 }, img: 'images/chillipaneer.jpg', glb: '3d/chilly-paneer-gravy.glb' },
+      {id: 'c14', name: 'Chilly Paneer (Dry)', price: { half: 110, full: 170 }, img: 'images/chillipaneer.jpg', glb: '3d/chilly-paneer-dry.glb' },
+      {id: 'c15', name: 'Manchurian (Gravy)', price: { half: 60, full: 90 }, img: 'images/manchurian.jpg', glb: '3d/manchurian-gravy.glb' },
+      {id: 'c16', name: 'Manchurian (Dry)', price: { half: 70, full: 100 }, img: 'images/manchurian.jpg', glb: '3d/manchurian-dry.glb' },
+      {id: 'c17', name: 'Chilly Mushroom (Gravy)', price: { half: 90, full: 130 }, img: 'images/mushroom.jpg', glb: '3d/chilly-mushroom.glb' }
+    ],
+    combo: [
+      {id: 'c18', name: 'Chowmein & Manchurian', price: { full: 90 }, img: 'images/combo.jpg', glb: '3d/chowmein-manchurian.glb' },
+      {id: 'c19', name: 'Rice & Manchurian', price: { full: 90 }, img: 'images/combo.jpg', glb: '3d/rice-manchurian.glb' },
+      {id: 'c20', name: 'Veg Chopsy', price: { full: 100 }, img: 'images/chopsy.jpg', glb: '3d/veg-chopsy.glb' },
+      {id: 'c21', name: 'Chinese Chopsy', price: { full: 100 }, img: 'images/chopsy.jpg', glb: '3d/chinese-chopsy.glb' }
+    ]
+  }
+};
 
+// flatten function to search item
+function getAllItems(data){
+  let arr = [];
+  for(const cat in data){
+    for(const sub in data[cat]){
+      arr = arr.concat(data[cat][sub]);
+    }
+  }
+  return arr;
+}
+
+const allItems = getAllItems(menuData);
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-const item = menu.find(m => m.id === id);
+const item = allItems.find(m => m.id === id);
 
 if (item) {
+  let priceText = "";
+  if (typeof item.price === "object") {
+    const half = item.price.half ? `Half: ₹${item.price.half}` : "";
+    const full = item.price.full ? `Full: ₹${item.price.full}` : "";
+    priceText = half + (half && full ? " | " : "") + full;
+  } else {
+    priceText = `₹${item.price}`;
+  }
+
   const content = document.getElementById("content");
   content.innerHTML = `
     <h1>${item.name}</h1>
-    <p class="price">₹${item.price}</p>
+    <p class="price">${priceText}</p>
     ${
-      item.glb && item.glb.trim() !== "" 
+      item.glb 
       ? `<div class="model-container">
             <model-viewer 
               src="${item.glb}" 
@@ -99,13 +161,11 @@ if (item) {
               auto-rotate 
               ar 
               shadow-intensity="1" 
-              exposure="1.2" 
               environment-image="neutral">
             </model-viewer>
-          </div>` 
+          </div>`
       : `<img src="${item.img}" alt="${item.name}">`
     }
-    <p>${item.long}</p>
   `;
 } else {
   document.getElementById("content").innerHTML = "<h2>Item not found</h2>";

@@ -99,28 +99,64 @@
 const menuData = {
   south: {
     dosa: [
-      { id: 's1', name: 'Masala Dosa', price: 120, img: 'dosa.jpg' },
-      { id: 's2', name: 'Paneer Dosa', price: 150, img: 'paneerdosa.jpg' }
+      { id: 's1', name: 'Masala Dosa', price: 80, img: 'dosa.jpg' },
+      { id: 's2', name: 'Plain Dosa', price: 60, img: 'idli.jpg' },
+      { id: 's3', name: 'Special Masala Dosa', price: 110, img: 'idli.jpg' },
+      { id: 's4', name: 'Onion Plain Dosa', price: 80, img: 'idli.jpg' },
+      { id: 's5', name: 'Onion Masala Dosa', price: 90, img: 'idli.jpg' },
+      { id: 's6', name: 'Paneer Dosa', price: 130, img: 'idli.jpg' },
+      { id: 's7', name: 'Mysore Plain Dosa', price: 90, img: 'idli.jpg' },
+      { id: 's8', name: 'Mysore Masala Dosa', price: 100, img: 'idli.jpg' },
+      { id: 's9', name: 'Mysore Paneer Dosa', price: 140, img: 'idli.jpg' }
     ],
     uttapam: [
-      { id: 's3', name: 'Plain Uttapam', price: 100, img: 'uttapam.jpg' },
-      { id: 's4', name: 'Onion Uttapam', price: 120, img: 'onionuttapam.jpg' }
+      { id: 'u1', name: 'Onion Uttapam', price: 90, img: 'idli.jpg' },
+      { id: 'u2', name: 'Mix Veg Uttapam', price: 110, img: 'idli.jpg' },
+      { id: 'u3', name: 'Paneer Uttapam', price: 130, img: 'idli.jpg' },
+      { id: 'u4', name: 'Rawa Masala Dosa', price: 100, img: 'idli.jpg' },
+      { id: 'u5', name: 'Rawa Onion Masala Dosa', price: 110, img: 'idli.jpg' },
+      { id: 'u6', name: 'Rawa Paneer Masala Dosa', price: 140, img: 'idli.jpg' }
     ],
     combo: [
-      { id: 's5', name: 'Idli + Vada Combo', price: 140, img: 'combo.jpg' }
+      { id: 'v1', name: 'Vada Sambhar', price: 50, img: 'idli.jpg' },
+      { id: 'v2', name: 'Idli Sambhar', price: 50, img: 'idli.jpg' },
+      { id: 'v3', name: 'Vada/Idli plain', price: 40, img: 'idli.jpg' },
+      { id: 'v4', name: 'Fried Idli', price: 60, img: 'idli.jpg' },
+      { id: 'v5', name: 'Upma', price: 70, img: 'idli.jpg' }
     ]
   },
   chinese: {
     noodles: [
-      { id: 'c1', name: 'Hakka Noodles', price: 120, img: 'noodles.jpg' },
-      { id: 'c2', name: 'Schezwan Noodles', price: 140, img: 'schezwan.jpg' }
+      {id: 'c1', name: 'Chowmein',  price: { half: 50, full: 80 }, img: 'chowmein.jpg' },
+      {id: 'c2', name: 'Extra Veg Chowmein', price: { half: 60, full: 90 }, img: 'chowmein.jpg' },
+      {id: 'c3', name: 'Paneer Chowmein', price: { half: 80, full: 120 }, img: 'chowmein.jpg' },
+      {id: 'c4', name: 'Singapuri Chowmein', price: { half: 80, full: 120 }, img: 'chowmein.jpg' },
+      {id: 'c5', name: 'Hakka Noodles', price: { half: 80, full: 120 }, img: 'chowmein.jpg' },
+      {id: 'c6', name: 'Garlic Chowmein', price: { half: 60, full: 90 }, img: 'chowmein.jpg' },
+      {id: 'c7', name: 'Fried Rice', price: { half: 50, full: 80 }, img: 'chowmein.jpg' },
+      {id: 'c8', name: 'Paneer Fried Rice', price: { half: 80, full: 120 }, img: 'chowmein.jpg' }
     ],
+
     starters: [
-      { id: 'c3', name: 'Spring Roll', price: 130, img: 'springroll.jpg' },
-      { id: 'c4', name: 'Veg Manchurian', price: 150, img: 'manchurian.jpg' }
+      {id: 'c9', name: 'Spring Roll', price: { half: 40, full: 60 }, img: 'chowmein.jpg' },
+      {id: 'c10', name: 'French Fries', price: { half: 50, full: 80 }, img: 'chowmein.jpg' },
+      {id: 'c11', name: 'Chilly Potato', price: { half: 60, full: 90 }, img: 'chowmein.jpg' },
+      {id: 'c12', name: 'Honey Chilly Potato', price: { half: 70, full: 100 }, img: 'chowmein.jpg' }
     ],
+
     gravy: [
-      { id: 'c5', name: 'Chilli Paneer', price: 180, img: 'chillipaneer.jpg' }
+      {id: 'c13', name: 'Chilly Paneer (Gravy)', price: { half: 100, full: 160 }, img: 'chowmein.jpg' },
+      {id: 'c14', name: 'Chilly Paneer (Dry)', price: { half: 110, full: 170 }, img: 'chowmein.jpg' },
+      {id: 'c15', name: 'Manchurian (Gravy)', price: { half: 60, full: 90 }, img: 'chowmein.jpg' },
+      {id: 'c16', name: 'Manchurian (Dry)', price: { half: 70, full: 100 }, img: 'chowmein.jpg' },
+      {id: 'c17', name: 'Chilly Mushroom (Gravy)', price: { half: 90, full: 130 }, img: 'chowmein.jpg' }
+    ],
+
+    combo: [
+      {id: 'c18', name: 'Chowmein & Manchurian', price: { full: 90 }, img: 'chowmein.jpg' },
+      {id: 'c19', name: 'Rice & Manchurian', price: { full: 90 }, img: 'chowmein.jpg' },
+      {id: 'c20', name: 'Veg Chopsy', price: { full: 100 }, img: 'chowmein.jpg' },
+      {id: 'c21', name: 'Chinese Chopsy', price: { full: 100 }, img: 'chowmein.jpg' }
     ]
   }
 };
@@ -146,11 +182,21 @@ function loadCategory(category){
     const gridDiv = document.createElement('div');
     gridDiv.className = 'grid';
     subs[sub].forEach(item => {
+      let priceText = "";
+
+      if (typeof item.price === "object") {
+        const half = item.price.half ? `Half: ₹${item.price.half}` : "";
+        const full = item.price.full ? `Full: ₹${item.price.full}` : "";
+        priceText = half + (half && full ? " | " : "") + full;
+      } else {
+        priceText = `₹${item.price}`;
+      }
+
       gridDiv.innerHTML += `
         <div class="card">
           <img src="${item.img}" alt="${item.name}">
           <h3>${item.name}</h3>
-          <p class="price">₹${item.price}</p>
+          <p class="price">${priceText}</p>
           <a href="detail.html?id=${item.id}" class="btn">View in 3D</a>
         </div>
       `;
