@@ -11,13 +11,16 @@
       margin: 0;
       padding: 20px;
     }
-    h1 { text-align: center; margin-bottom: 20px; }
+    h1 { 
+      text-align: center; 
+      margin-bottom: 20px; 
+    }
 
-    .tabs {
+    .tabs, .subtabs {
       text-align: center;
       margin-bottom: 20px;
     }
-    .tabs button {
+    .tabs button, .subtabs button {
       padding: 10px 20px;
       margin: 5px;
       border: none;
@@ -28,18 +31,7 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .tabs button:hover { background: #094f2a; }
-    .tabs button.active { background: #094f2a; }
-
-    .section {
-      margin-bottom: 30px;
-    }
-    .section h2 {
-      color: #0b6b3a;
-      border-bottom: 2px solid #0b6b3a;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
+    .tabs button:hover, .subtabs button:hover { background: #094f2a; }
 
     .grid {
       display: grid;
@@ -64,8 +56,17 @@
       object-fit: cover;
     }
 
-    .card h3 { margin: 8px 0 4px; font-size: 16px; }
-    .price { color: #0b6b3a; font-weight: bold; margin-bottom: 6px; font-size: 14px; }
+    .card h3 { 
+      margin: 8px 0 4px; 
+      font-size: 16px; 
+    }
+
+    .price { 
+      color: #0b6b3a; 
+      font-weight: bold; 
+      margin-bottom: 6px; 
+      font-size: 14px; 
+    }
 
     .btn {
       display: inline-block;
@@ -88,12 +89,15 @@
 
 <!-- Main Tabs -->
 <div class="tabs">
-  <button id="tab-south" onclick="loadCategory('south')">South Indian</button>
-  <button id="tab-chinese" onclick="loadCategory('chinese')">Chinese</button>
+  <button onclick="loadSubTabs('south')">South Indian</button>
+  <button onclick="loadSubTabs('chinese')">Chinese</button>
 </div>
 
-<!-- Dish Sections -->
-<div id="menuContainer"></div>
+<!-- Sub Tabs -->
+<div class="subtabs" id="subTabs"></div>
+
+<!-- Dish Grid -->
+<div class="grid" id="menuGrid"></div>
 
 <script>
 const menuData = {
@@ -125,48 +129,38 @@ const menuData = {
   }
 };
 
-const menuContainer = document.getElementById("menuContainer");
+const subTabs = document.getElementById("subTabs");
+const grid = document.getElementById("menuGrid");
 
-function loadCategory(category){
-  menuContainer.innerHTML = ""; // clear previous content
+// Load Sub Tabs based on Main Category
+function loadSubTabs(category){
+  subTabs.innerHTML = "";
+  grid.innerHTML = "";
+  const subs = Object.keys(menuData[category]);
+  subs.forEach(sub => {
+    subTabs.innerHTML += `<button onclick="loadMenu('${category}','${sub}')">${capitalize(sub)}</button>`;
+  });
+}
 
-  // Remove active class from all tabs
-  document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
-  document.getElementById(`tab-${category}`).classList.add('active');
-
-  const subs = menuData[category];
-
-  for(const sub in subs){
-    // Section Heading
-    const sectionDiv = document.createElement('div');
-    sectionDiv.className = 'section';
-    sectionDiv.innerHTML = `<h2>${capitalize(sub)}</h2>`;
-    
-    // Grid of dishes
-    const gridDiv = document.createElement('div');
-    gridDiv.className = 'grid';
-    subs[sub].forEach(item => {
-      gridDiv.innerHTML += `
-        <div class="card">
-          <img src="${item.img}" alt="${item.name}">
-          <h3>${item.name}</h3>
-          <p class="price">₹${item.price}</p>
-          <a href="detail.html?id=${item.id}" class="btn">View in 3D</a>
-        </div>
-      `;
-    });
-
-    sectionDiv.appendChild(gridDiv);
-    menuContainer.appendChild(sectionDiv);
-  }
+// Load Menu based on Sub Category
+function loadMenu(category, sub){
+  grid.innerHTML = "";
+  const menu = menuData[category][sub];
+  menu.forEach(item => {
+    grid.innerHTML += `
+      <div class="card">
+        <img src="${item.img}" alt="${item.name}">
+        <h3>${item.name}</h3>
+        <p class="price">₹${item.price}</p>
+        <a href="detail.html?id=${item.id}" class="btn">View in 3D</a>
+      </div>
+    `;
+  });
 }
 
 function capitalize(word){
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
-
-// By default open South Indian
-window.onload = () => { loadCategory('south'); }
 </script>
 
 </body>

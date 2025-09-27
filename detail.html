@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dish Details</title>
+  <!-- Google Model Viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body { 
@@ -21,13 +22,32 @@
       font-weight:bold; 
       margin-bottom:15px; 
     }
-    model-viewer, img { 
-      width:100%; 
-      height:80vh; 
-      object-fit: contain; 
-      border-radius:0; 
-      background:#ffff; 
+
+    /* Container with background image */
+    .model-container {
+      width:100%;
+      height:60vh;
+      background: url('product_backgroungd.jpg') no-repeat center center / cover;
+      border-radius:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
+
+    model-viewer {
+      width:100%;
+      height:80%;
+      background: transparent; /* important */
+    }
+
+    img {
+      width:100%;
+      height:80vh;
+      object-fit: contain;
+      border-radius:0;
+      background:#fff;
+    }
+
     .back { 
       display:inline-block; 
       margin:20px auto 0; 
@@ -51,10 +71,14 @@
 
 <script>
 const menu = [
-  { id: 'item1', name: 'Burger Classic', price: 150, long: 'Freshly made juicy burger with lettuce, tomato, and cheese.', img: 'burger.jpeg', glb: 'dosa.glb' },
-  { id: 'item2', name: 'Cheese Burger', price: 180, long: 'Burger loaded with extra cheese slices and fresh veggies.', img: 'burger.jpeg', glb: '' },
-  { id: 'item3', name: 'Veggie Burger', price: 120, long: 'A wholesome burger with grilled vegetables and chutney.', img: 'burger.jpeg', glb: '' },
-  { id: 'item4', name: 'Chicken Burger', price: 200, long: 'Grilled chicken patty with lettuce, tomato, and mayo sauce.', img: 'burger.jpeg', glb: '' }
+  { id: 's1', name: 'Masala Dosa', price: 120, long: 'Crispy dosa with masala filling.', img: 'dosa.jpg', glb: 'dosa.glb' },
+  { id: 's2', name: 'Idli Sambhar', price: 80, long: 'Steamed idlis with hot sambhar.', img: 'idli.jpg', glb: 'idli.glb' },
+  { id: 's3', name: 'Vada Sambhar', price: 90, long: 'Crispy vada served with sambhar.', img: 'vada.jpg', glb: 'vada.glb' },
+  { id: 's4', name: 'Uttapam', price: 100, long: 'Soft uttapam with toppings.', img: 'uttapam.jpg', glb: 'uttapam.glb' },
+  { id: 'c1', name: 'Veg Manchurian', price: 150, long: 'Fried veg balls in tangy sauce.', img: 'manchurian.jpg', glb: 'manchurian.glb' },
+  { id: 'c2', name: 'Hakka Noodles', price: 120, long: 'Stir-fried noodles with veggies.', img: 'noodles.jpg', glb: 'noodles.glb' },
+  { id: 'c3', name: 'Spring Roll', price: 130, long: 'Crispy rolls filled with veggies.', img: 'springroll.jpg', glb: 'springroll.glb' },
+  { id: 'c4', name: 'Chilli Paneer', price: 180, long: 'Paneer cubes tossed in chilli sauce.', img: 'chillipaneer.jpg', glb: 'chillipaneer.glb' }
 ];
 
 const params = new URLSearchParams(window.location.search);
@@ -68,7 +92,17 @@ if (item) {
     <p class="price">₹${item.price}</p>
     ${
       item.glb && item.glb.trim() !== "" 
-      ? `<model-viewer src="${item.glb}" camera-controls auto-rotate ar shadow-intensity="1"></model-viewer>` 
+      ? `<div class="model-container">
+            <model-viewer 
+              src="${item.glb}" 
+              camera-controls 
+              auto-rotate 
+              ar 
+              shadow-intensity="1" 
+              exposure="1.2" 
+              environment-image="neutral">
+            </model-viewer>
+          </div>` 
       : `<img src="${item.img}" alt="${item.name}">`
     }
     <p>${item.long}</p>
